@@ -1,0 +1,129 @@
+<div class="one">
+  <h3>Property Binding e Interpolação</h3>
+  <p> Clique para saber  mais: <a [href]="link" target="_blank"> {{ link }} </a> </p>
+  <br>
+</div>
+
+<div class="two">
+  <h3>Class e Style binding</h3>
+
+  <select #classe (change)="0">
+    <option value="alert-primary">Primary</option>
+    <option value="alert-secondary">Secondary</option>
+    <option value="alert-success">Success</option>
+    <option value="alert-danger">Danger</option>
+    <option value="alert-warning">Warning</option>
+    <option value="alert-info">Info</option>
+    <option value="alert-dark">Dark</option>
+  </select>
+
+  <div class="alert {{classe.value}}"  role="alert">
+    Texto colorido conforme valor do combobox.
+  </div>
+
+  <div class="alert" role="alert"
+    [class.alert-primary]="classe.value == 'alert-primary'">
+    Primary
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-secondary]="classe.value == 'alert-secondary'">
+    Secondary
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-success]="classe.value == 'alert-success'">
+    Success
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-danger]="classe.value == 'alert-danger'">
+    Danger
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-warning]="classe.value == 'alert-warning'">
+    Warning
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-info]="classe.value == 'alert-info'">
+    Info
+  </div>
+  <div class="alert" role="alert"
+    [class.alert-dark]="classe.value == 'alert-dark'">
+    Dark
+  </div>
+
+  <div class="alert alert-danger" role="alert"
+    [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+    Esse texto só vai aparecer se a opção Danger estiver selecionada.
+  </div>
+  <br>
+</div>
+
+<div class="three">
+  <h3>Event binding</h3>
+  <button (click)="onClick()" class="btn btn-primary">Me clique!</button>
+  <br>
+  
+  <input type="text" #campoInput
+    (keyup)="onKeyUp($event)"
+    (keyup.enter)="salvarValor(campoInput.value)"
+    (blur)="salvarValor(campoInput.value)"
+    >
+  <p>Valor Atual: {{ valorAtual }}</p>
+  <p>Valor Salvo: {{ valorSalvo }}</p>
+  <br>
+
+  <span
+    (mouseover)="onMouseOverOut()"
+    (mouseout)="onMouseOverOut()"
+    [class.highlight]="isMouseOver == true"
+    >
+    Passe o mouse sobre mim.
+  </span>
+
+  <br>
+</div>
+
+<div class="four">
+  <h3>Two-way data binding</h3>
+  <input type="text" #conteudoOne
+    [value]="nome"
+    (input)="nome = conteudoOne.value"
+  >
+
+  <input type="text" #conteudoTwo
+    [ngModel]="nome"
+    (ngModelChange)="nome = conteudoTwo.value"
+  >
+
+  <input type="text"
+    [(ngModel)]="nome"
+  >
+  <p>Você digitou: {{ nome }}</p>
+  <br>
+
+  <input type="text" [(ngModel)]="pessoa.nome">
+  <input type="text" [(ngModel)]="pessoa.idade">
+  <p>Meu nome é {{ pessoa.nome }} e tenho {{ pessoa.idade }} anos de idade.</p>
+
+</div>
+
+<div class="five">
+  <h3>Input properties</h3>
+  <app-input-property [nome]="nomeDoCurso"></app-input-property>
+  <br>
+
+  <h3>Output properties</h3>
+  <app-output-property
+    [valor]="valorInicial"
+    (mudouValor)="onMudouValor($event)"
+  ></app-output-property>
+  <br>
+</div>
+
+<div class="six">
+  <h3>Acesso ao DOM e ao Template com ViewChild</h3>
+
+  <app-view-child
+    [valor]="valorInicial"
+    (mudouValor)="onMudouValor($event)"
+  ></app-view-child>
+</div>

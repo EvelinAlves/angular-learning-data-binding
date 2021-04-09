@@ -1,0 +1,8 @@
+.contador {
+    display: flex;
+    align-items: center;
+}
+
+input {
+    text-align: center;
+}
